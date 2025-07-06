@@ -1,0 +1,32 @@
+＃手順
+1.GUIツールなどで取得結果をテキストファイル等に貼り付ける
+
+2.カラム値間の空白を選択し、カンマもしくは任意の区切り文字に置換する
+
+3.以下のようにデータ変数を作成する
+  const data = [
+    {
+      paramKeys: ['test1','test2','test3'],
+      values: [
+        'aaaaaaaaaaaa,bbbbbbbbbbbbb,ccccccccc',
+        'dddddddddddd,eeeeeeeeeee,fffffffff' 
+      ],
+      endPoint: 'http://localhost:8081/api/v1.0/example/endpoint' // エンドポイントを設定することで、クエリパラメータ込みのURLを生成
+      // 出力例：http://localhost:8081/api/v1.0/example/endpoint?test1=aaaaaaaaaaaa&test2=bbbbbbbbbbbbb&test3=ccccccccc
+    },
+    {
+      paramKeys: ['test1','test2','test3'],
+      values: [
+        'aaaaaaaaaaaa*bbbbbbbbbbbbb*ccccccccc',
+        'aaaaaaaaaaaa*bbbbbbbbbbbbb*ccccccccc',
+        'aaaaaaaaaaaa*bbbbbbbbbbbbb*ccccccccc',
+        'aaaaaaaaaaaa*bbbbbbbbbbbbb*ccccccccc',
+        'aaaaaaaaaaaa*bbbbbbbbbbbbb*ccccccccc',
+        'aaaaaaaaaaaa*bbbbbbbbbbbbb*ccccccccc', 
+      ],
+      splitContext: '*' // カンマ区切り以外の時はsplitContextでvaluesの各要素の区切り文字を指定する
+      // 出力例：test1=aaaaaaaaaaaa&test2=bbbbbbbbbbbbb&test3=ccccccccc
+    }
+  ]
+
+4.
